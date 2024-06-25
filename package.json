@@ -1,0 +1,32 @@
+{
+  "name": "react-query-key-helper",
+  "version": "0.0.2",
+  "type": "module",
+  "module": "./dist/bundle.js",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hyemi-han/react-query-key-helper.git"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.6",
+    "rollup": "^4.18.0",
+    "tslib": "^2.6.3",
+    "typescript": "^5.2.2"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@tanstack/react-query": "^5.0.0"
+  },
+  "peerDependencies": {
+    "@tanstack/react-query": "^5.0.0"
+  },
+  "keywords": [
+    "react-query",
+    "react-query-key-helper"
+  ]
+}
