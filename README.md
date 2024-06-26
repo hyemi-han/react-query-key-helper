@@ -32,10 +32,8 @@ createQueryOption({
 - get method
 
 ```js
-createQueryOption < undefined,
-  { id: string } >
-    {
-      apiUrl: ({ id }) => `/todo/${id}`,
-      queryFn: (apiUrl) => request.get < TeamResponseT > apiUrl,
-    };
+createQueryOption<undefined, { id: string }>({
+  apiUrl: ({ id }) => `/todo/${id}`,
+  queryFn: (apiUrl) => request.get < TeamResponseT > apiUrl,
+});
 ```
