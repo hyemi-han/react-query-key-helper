@@ -1,3 +1,7 @@
+<h1 align="center">react query key helper</h1>
+
+<p>Query key management for @tanstack/query with auto-create features.</p>
+
 ## Installing
 
 For the latest stable version:
