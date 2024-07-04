@@ -1,6 +1,6 @@
 {
   "name": "react-query-key-helper",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "module",
   "main": "dist/bundle.js",
   "module": "dist/bundle.es.js",
@@ -34,5 +34,6 @@
   "keywords": [
     "react-query",
     "react-query-key-helper"
-  ]
+  ],
+  "packageManager": "yarn@1.22.21+sha1.1959a18351b811cdeedbd484a8f86c3cc3bbaf72"
 }
