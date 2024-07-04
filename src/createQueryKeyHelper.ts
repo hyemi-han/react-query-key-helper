@@ -1,5 +1,5 @@
-import { QueryKey } from "@tanstack/react-query";
-import { isNonNil } from "./utils";
+import { QueryKey } from '@tanstack/react-query';
+import { isNonNil } from './utils';
 
 interface QueryKeyHelperProps<PathVariables, Payload, Response> {
   apiUrl: (pathVariables: PathVariables) => string;
@@ -25,8 +25,10 @@ export const createQueryOption =
       queryFn: () => {
         return props.queryFn(apiUrl, payload);
       },
-      queryKey: [apiUrl.split("/"), payload, pathVariables].filter(
-        isNonNil
-      ) as QueryKey,
+      queryKey: [
+        apiUrl.split('/').filter((value) => value !== ''),
+        payload,
+        pathVariables,
+      ].filter(isNonNil) as QueryKey,
     };
   };
