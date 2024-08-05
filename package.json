@@ -1,6 +1,6 @@
 {
   "name": "react-query-key-helper",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "type": "module",
   "main": "dist/bundle.js",
   "module": "dist/bundle.es.js",
