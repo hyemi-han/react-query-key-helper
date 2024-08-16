@@ -32,11 +32,11 @@ export function createQueryOption<Response = unknown>(
 
 export function createQueryOption<Response = unknown, PathVariables = unknown>(
   props: QueryKeyHelperNoPayloadProps<Response, PathVariables>
-): (pathVariables: PathVariables) => QueryKeyHelperReturn<Response>;
+): (params: { pathVariables: PathVariables }) => QueryKeyHelperReturn<Response>;
 
 export function createQueryOption<Response = unknown, Payload = unknown>(
   props: QueryKeyHelperNoPathVariablesProps<Response, Payload>
-): (payload: Payload) => QueryKeyHelperReturn<Response>;
+): (params: { payload: Payload }) => QueryKeyHelperReturn<Response>;
 
 export function createQueryOption<
   Response = unknown,
@@ -44,30 +44,30 @@ export function createQueryOption<
   PathVariables = unknown
 >(
   props: QueryKeyHelperProps<Response, Payload, PathVariables>
-): (
-  payload: Payload,
-  pathVariables: PathVariables
-) => QueryKeyHelperReturn<Response>;
+): (params: {
+  payload: Payload;
+  pathVariables: PathVariables;
+}) => QueryKeyHelperReturn<Response>;
 
 export function createQueryOption<
   Response = unknown,
   Payload = unknown,
   PathVariables = unknown
 >(props: QueryKeyHelperProps<Response, Payload, PathVariables>) {
-  return (
-    payload: Payload,
-    pathVariables: PathVariables
-  ): QueryKeyHelperReturn<Response> => {
-    const apiUrl = props.apiUrl(pathVariables as PathVariables);
+  return (params: {
+    payload?: Payload;
+    pathVariables?: PathVariables;
+  }): QueryKeyHelperReturn<Response> => {
+    const apiUrl = props.apiUrl(params.pathVariables as PathVariables);
 
     return {
       queryFn: () => {
-        return props.queryFn(apiUrl, payload);
+        return props.queryFn(apiUrl, params.payload as Payload);
       },
       queryKey: [
         apiUrl.split('/').filter((value) => value !== ''),
-        payload,
-        pathVariables,
+        params.payload,
+        params.pathVariables,
       ].filter(isNonNil) as QueryKey,
     };
   };

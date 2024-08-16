@@ -22,10 +22,10 @@ const d = createQueryOption({
     Promise.resolve({ apiUrl, payload }),
 });
 
-a('a');
+a({ pathVariables: 'a' });
 
 b();
 
-c({ id: 1 });
+c({ payload: { id: 1 } });
 
-d({ id: 1 }, 'pathVariables');
+d({ payload: { id: 1 }, pathVariables: 'pathVariables' });
