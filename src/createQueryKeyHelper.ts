@@ -6,9 +6,19 @@ interface QueryKeyHelperProps<Response, Payload, PathVariables> {
   queryFn: (apiUrl: string, payload: Payload) => Promise<Response>;
 }
 
+interface QueryKeyOptionalPayloadHelperProps<Response, Payload, PathVariables> {
+  apiUrl: (pathVariables: PathVariables) => string;
+  queryFn: (apiUrl: string, payload?: Payload) => Promise<Response>;
+}
+
 interface QueryKeyHelperNoPathVariablesProps<Response, Payload> {
   apiUrl: () => string;
   queryFn: (apiUrl: string, payload: Payload) => Promise<Response>;
+}
+
+interface QueryKeyHelperNoPathVariablesOptionalPayloadProps<Response, Payload> {
+  apiUrl: () => string;
+  queryFn: (apiUrl: string, payload?: Payload) => Promise<Response>;
 }
 
 interface QueryKeyHelperNoPayloadProps<Response, PathVariables> {
@@ -26,9 +36,24 @@ interface QueryKeyHelperReturn<Response> {
   queryKey: QueryKey;
 }
 
+export function createQueryOption<Response = unknown, Payload = unknown>(
+  props: QueryKeyHelperNoPathVariablesOptionalPayloadProps<Response, Payload>
+): (params?: { payload?: Payload }) => QueryKeyHelperReturn<Response>;
+
 export function createQueryOption<Response = unknown>(
   props: QueryKeyHelperNoPayloadPathVariablesProps<Response>
 ): () => QueryKeyHelperReturn<Response>;
+
+export function createQueryOption<
+  Response = unknown,
+  Payload = unknown,
+  PathVariables = unknown
+>(
+  props: QueryKeyOptionalPayloadHelperProps<Response, Payload, PathVariables>
+): (params: {
+  payload?: Payload;
+  pathVariables: PathVariables;
+}) => QueryKeyHelperReturn<Response>;
 
 export function createQueryOption<Response = unknown, PathVariables = unknown>(
   props: QueryKeyHelperNoPayloadProps<Response, PathVariables>
